@@ -1,7 +1,7 @@
 name: Manual Deployment
 
 on:
-  push:
+  #   push:
   workflow_call:
     inputs:
       confirm:
