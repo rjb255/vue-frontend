@@ -1,0 +1,36 @@
+name: Manual Deployment
+
+on:
+  # push:
+  workflow_call:
+    inputs:
+      confirm:
+        description: "Confirm deployment. This will use the latest commit on the branch selected"
+        required: true
+        type: boolean
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    if: ${{ inputs.confirm }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Npm Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: deploy
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: srcf.net
+          username: rjb255
+          key: ${{ secrets.SSH_KEY }}
+          source: "./dist/*"
+          target: /home/rjb255/frontend/vue
