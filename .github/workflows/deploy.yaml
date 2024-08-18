@@ -31,6 +31,7 @@ jobs:
         with:
           host: srcf.net
           username: rjb255
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{ secrets.SSH_KEY }}
           source: "./dist/*"
           target: /home/rjb255/frontend/vue
