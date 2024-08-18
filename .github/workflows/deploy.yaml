@@ -29,7 +29,7 @@ jobs:
       - name: deploy
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: srcf.net
+          host: shell.srcf.net
           username: rjb255
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           key: ${{ secrets.SSH_KEY }}
