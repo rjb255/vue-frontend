@@ -2,7 +2,7 @@ name: Manual Deployment
 
 on:
   #   push:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       confirm:
         description: "Confirm deployment. This will use the latest commit on the branch selected"
