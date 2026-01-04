@@ -8,6 +8,7 @@
       <!--   :cx="point.x + 50" -->
       <!--   :cy="100 - point.y" -->
       <!--   r="1" -->
+      <!--   :class="`L${point.level}`" -->
       <!-- /> -->
       <line
         v-for="[index, edge] of points.edges.entries()"
@@ -16,7 +17,10 @@
         :x2="edge[1].x + 50"
         :y1="100 - edge[0].y"
         :y2="100 - edge[1].y"
+        length="0"
         vector-effect="non-scaling-stroke"
+        :transform-origin="`${edge[0].x + 50} ${100 - edge[0].y}`"
+        :style="`animation-delay:${edge[0].level / 2}s;`"
         :stroke-width="2 * Math.exp(-(edge[0].level - 1) / 5)"
         :stroke="
           edge[0].level < 9
@@ -55,13 +59,18 @@ function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   //   tree.setChildPoint(new DOMMatrix());
   const level = tree.level;
   console.log(level);
+  console.log({ p1: tree.parent?.point, p2: tree.point });
+
   const edges = tree.parent
-    ? [[new Point(tree.parent.basePoint, level), new Point(tree.basePoint, level)]]
-    : [];
-  if (!tree.branches) return { points: [new Point(tree.basePoint, level)], edges };
+    ? [[new Point(tree.parent.point, level), new Point(tree.point, level)]]
+    : [[new Point(new DOMPoint(0, 0), level), new Point(tree.point, level)]];
+
+  if (!tree.branches) return { points: [new Point(tree.point, level)], edges };
+
   const children = tree.branches.map(flattenTree);
+  console.log(children);
   return {
-    points: [new Point(tree.basePoint, level), ...children.map((v) => v.points).flat()],
+    points: [new Point(tree.point, level), ...children.map((v) => v.points).flat()],
     edges: [...edges, ...children.map((v) => v.edges).flat()],
   };
 }
@@ -85,6 +94,17 @@ onMounted(() => {
   height: min(80vh, 100vw);
   z-index: 1;
 }
+
+svg line {
+  transform: scale(0, 0);
+  animation: scale-grow 0.5s linear forwards;
+}
+@keyframes scale-grow {
+  to {
+    transform: scale(1, 1);
+  }
+}
+
 .flex {
   display: flex;
   width: 100%;
