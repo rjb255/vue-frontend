@@ -33,10 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { Tree, tree } from "../utilities/treePoints";
 import { woodColour, leafColour } from "@/utilities/mainSvgColours";
-// const treeRef = ref<HTMLCanvasElement | null>(null);
 
 class Point {
   x: number;
@@ -50,10 +49,10 @@ class Point {
   }
 }
 
-const points = ref<{ points: Point[]; edges: Point[][] }>({
-  points: [],
-  edges: [],
-});
+const treeRef = ref<Tree>();
+const points = computed(() =>
+  treeRef.value ? flattenTree(treeRef.value) : { points: [], edges: [] },
+);
 
 function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   //   tree.setChildPoint(new DOMMatrix());
@@ -77,14 +76,7 @@ function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
 
 onMounted(() => {
   console.log(tree);
-  points.value = flattenTree(tree);
-  //   treeRef.value?.focus();
-  //   if (!treeRef.value) return;
-  //   tree.value;
-  //   const graphics = tree.value.getContext("webgl2") || tree.value.getContext("webgl");
-  //   if (!graphics) return;
-  //   //   graphics.clearColor(0.0, 0.0, 0.0, 1.0);
-  //   //   graphics.clear(graphics.COLOR_BUFFER_BIT);
+  treeRef.value = tree;
 });
 </script>
 

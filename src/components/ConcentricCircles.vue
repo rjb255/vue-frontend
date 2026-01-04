@@ -12,10 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import type { PropType } from "vue";
 
-const props = defineProps({
+const { colours } = defineProps({
   colours: { type: Array as PropType<number[][]>, required: true },
 });
 </script>
@@ -25,5 +24,9 @@ svg {
   height: 100%;
   width: 100%;
   background-color: v-bind("`hsl(${colours[0][0]}, ${colours[0][1]}%, ${colours[0][2]}%)`");
+}
+
+svg circle {
+  filter: drop-shadow(2px 2px 1px rgb(0 0 0 / 0.4)) drop-shadow(-2px -2px 1px rgb(0 0 0 / 0.4));
 }
 </style>
