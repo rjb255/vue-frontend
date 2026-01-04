@@ -39,6 +39,6 @@ export class Tree {
   }
 }
 
-const tree = new Tree({ maxLevel: 6 });
+const tree = new Tree({ maxLevel: 8 });
 tree.setChildPoint(new Matrix());
 export { tree };

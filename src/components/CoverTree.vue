@@ -1,26 +1,71 @@
 <template>
   <!-- <canvas id="tree" ref="tree" width="100" height="100"> </canvas> -->
-  <svg id="tree" viewBox="0 0 100 100" overflow="visible">
-    <circle
-      v-for="[index, point] of points.entries()"
+  <svg id="tree" viewBox="0 0 100 100" overflow="visible" vector-effect="non-scaling-stroke">
+    <!-- <circle -->
+    <!--   v-for="[index, point] of points.points.entries()" -->
+    <!--   :key="index" -->
+    <!--   :cx="point.x + 50" -->
+    <!--   :cy="100 - point.y" -->
+    <!--   r="1" -->
+    <!-- /> -->
+    <line
+      v-for="[index, edge] of points.edges.entries()"
       :key="index"
-      :cx="point[0]"
-      :cy="point[1]"
-      r="1"
-    />
+      :x1="edge[0].x + 50"
+      :x2="edge[1].x + 50"
+      :y1="100 - edge[0].y"
+      :y2="100 - edge[1].y"
+      stroke-width="0.4"
+      :stroke="
+        edge[0].level < 8
+          ? `hsl(${woodColour[0]}, ${woodColour[1]}%, ${woodColour[2]}%)`
+          : `hsl(${leafColour[0]}, ${leafColour[1]}%, ${leafColour[2]}%)`
+      "
+    ></line>
   </svg>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { Tree, tree } from "../utilities/treePoints";
+import { woodColour, leafColour } from "@/utilities/mainSvgColours";
 // const treeRef = ref<HTMLCanvasElement | null>(null);
 
-const points = ref<number[][]>([]);
+class Point {
+  x: number;
+  y: number;
+  level: number;
+
+  constructor(point: DOMPoint, level: number) {
+    this.x = point.x;
+    this.y = point.y;
+    this.level = level;
+  }
+}
+
+const points = ref<{ points: Point[]; edges: Point[][] }>({
+  points: [],
+  edges: [],
+});
+
+function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
+  //   tree.setChildPoint(new DOMMatrix());
+  const level = tree.level;
+  console.log(level);
+  const edges = tree.parent
+    ? [[new Point(tree.parent.basePoint, level), new Point(tree.basePoint, level)]]
+    : [];
+  if (!tree.branches) return { points: [new Point(tree.basePoint, level)], edges };
+  const children = tree.branches.map(flattenTree);
+  return {
+    points: [new Point(tree.basePoint, level), ...children.map((v) => v.points).flat()],
+    edges: [...edges, ...children.map((v) => v.edges).flat()],
+  };
+}
 
 onMounted(() => {
   console.log(tree);
-  points.value = passTree(tree).map((point) => [point.x + 50, 100 - point.y]);
+  points.value = flattenTree(tree);
   //   treeRef.value?.focus();
   //   if (!treeRef.value) return;
   //   tree.value;
@@ -29,11 +74,4 @@ onMounted(() => {
   //   //   graphics.clearColor(0.0, 0.0, 0.0, 1.0);
   //   //   graphics.clear(graphics.COLOR_BUFFER_BIT);
 });
-
-function passTree(tree: Tree): DOMPoint[] {
-  //   tree.setChildPoint(new DOMMatrix());
-  console.log(tree.basePoint);
-  if (!tree.branches) return [tree.basePoint];
-  return [tree.basePoint, ...passTree(tree.branches[0]), ...passTree(tree.branches[1])];
-}
 </script>

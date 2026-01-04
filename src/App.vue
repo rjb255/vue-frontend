@@ -203,6 +203,7 @@ nav {
 }
 .body {
   position: absolute;
+  padding-bottom: 20px;
 }
 
 nav {

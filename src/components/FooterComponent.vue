@@ -4,7 +4,7 @@
 
 <style scoped>
 footer {
-  height: 4vh;
+  height: 50px;
   width: 100%;
   background-color: black;
   position: relative;
