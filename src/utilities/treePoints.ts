@@ -22,7 +22,6 @@ export class Tree {
         .translateSelf(0, unit)
         .rotateSelf(0, 0, direction * (30 + 20 * Math.random()))
         .scaleSelf(0.8, 0.8);
-      console.log(this.matrix.isIdentity);
       this.matrix.preMultiplySelf(this.parent.matrix);
     }
     if (this.level >= maxLevel) return;

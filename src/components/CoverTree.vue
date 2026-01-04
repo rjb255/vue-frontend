@@ -57,9 +57,6 @@ const points = computed(() =>
 function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   //   tree.setChildPoint(new DOMMatrix());
   const level = tree.level;
-  console.log(level);
-  console.log({ p1: tree.parent?.point, p2: tree.point });
-
   const edges = tree.parent
     ? [[new Point(tree.parent.point, level), new Point(tree.point, level)]]
     : [[new Point(new DOMPoint(0, 0), level), new Point(tree.point, level)]];
@@ -67,7 +64,6 @@ function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   if (!tree.branches) return { points: [new Point(tree.point, level)], edges };
 
   const children = tree.branches.map(flattenTree);
-  console.log(children);
   return {
     points: [new Point(tree.point, level), ...children.map((v) => v.points).flat()],
     edges: [...edges, ...children.map((v) => v.edges).flat()],
@@ -75,15 +71,14 @@ function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
 }
 
 onMounted(() => {
-  console.log(tree);
   treeRef.value = tree;
 });
 </script>
 
 <style scoped>
 #tree {
-  width: min(80vh, 100vw);
-  height: min(80vh, 100vw);
+  width: min(80vh, 90vw);
+  height: min(80vh, 90vw);
   z-index: 1;
 }
 
@@ -102,5 +97,6 @@ svg line {
   width: 100%;
   height: 80vh;
   justify-content: center;
+  align-items: flex-end;
 }
 </style>

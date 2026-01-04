@@ -67,7 +67,7 @@ onUnmounted(() => {
 
 const links = [
   { text: "Home", name: "home" },
-  { text: "Skating", name: "skating" },
+  { text: "Albums", name: "albums" },
   { text: "Projects", name: "projects" },
 ];
 
@@ -90,7 +90,7 @@ body,
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100;
+  height: 100%;
 }
 
 #app {
@@ -184,7 +184,7 @@ nav {
 
 #landscape {
   height: 80vh;
-  width: 100vw;
+  width: 100%;
   background-color: lightblue;
 }
 
@@ -213,7 +213,7 @@ nav {
   position: relative;
 }
 #ground {
-  width: 100vw;
+  width: 100%;
 }
 .nav-links {
   position: absolute;
@@ -231,7 +231,7 @@ nav {
 }
 
 #roots {
-  width: 100vw;
+  width: 100%;
 }
 
 header {
