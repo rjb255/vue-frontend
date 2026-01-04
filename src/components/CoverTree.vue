@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from "vue";
+// import { onMounted, ref, computed } from "vue";
 import { Tree, tree } from "../utilities/treePoints";
 import { woodColour, leafColour } from "@/utilities/mainSvgColours";
 
@@ -49,10 +49,12 @@ class Point {
   }
 }
 
-const treeRef = ref<Tree>();
-const points = computed(() =>
-  treeRef.value ? flattenTree(treeRef.value) : { points: [], edges: [] },
-);
+// const treeRef = ref<Tree>();
+// const points = computed(() =>
+//   treeRef.value ? flattenTree(treeRef.value) : { points: [], edges: [] },
+// );
+
+const points = flattenTree(tree);
 
 function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   //   tree.setChildPoint(new DOMMatrix());
@@ -70,9 +72,9 @@ function flattenTree(tree: Tree): { points: Point[]; edges: Point[][] } {
   };
 }
 
-onMounted(() => {
-  treeRef.value = tree;
-});
+// onMounted(() => {
+//   treeRef.value = tree;
+// });
 </script>
 
 <style scoped>
