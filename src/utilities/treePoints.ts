@@ -3,7 +3,7 @@ class Point extends DOMPoint {}
 
 type TreeInput = { level?: number; maxLevel: number; parent?: Tree; matrix?: Matrix };
 
-const unit = 20;
+const unit = 22;
 
 export class Tree {
   branches: Tree[] | null = null;
@@ -22,7 +22,7 @@ export class Tree {
       return matrix
         .translate(0, unit)
         .rotate(0, 0, (-1) ** i * (30 + 20 * Math.random()))
-        .scale(0.9, 0.9);
+        .scale(0.8, 0.8);
     });
 
     this.branches = childMatrices.map(
@@ -39,6 +39,6 @@ export class Tree {
   }
 }
 
-const tree = new Tree({ maxLevel: 8 });
+const tree = new Tree({ maxLevel: 10 });
 tree.setChildPoint(new Matrix());
 export { tree };

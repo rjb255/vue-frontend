@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div id="landscape">
       <ConcentricCircles id="concentric-circles" :colours="circleColours" />
-      <CoverTree id="tree" />
+      <CoverTree />
     </div>
     <div>
       <header>
@@ -51,7 +51,6 @@ import FooterComponent from "./components/FooterComponent.vue";
 import CoverTree from "./components/CoverTree.vue";
 import {
   woodColour,
-  leafColour,
   circleColours,
   groundColour,
   startColourChangingInterval,
@@ -82,9 +81,6 @@ const woodColourCss = computed(
 );
 const groundColourCss = computed(
   () => `hsl(${groundColour.value[0]},${groundColour.value[1]}%,${groundColour.value[2]}%)`,
-);
-const leafColourCss = computed(
-  () => `hsl(${leafColour.value[0]},${leafColour.value[1]}%,${leafColour.value[2]}%)`,
 );
 </script>
 
@@ -184,11 +180,6 @@ nav {
 
 .wrapper {
   position: relative;
-}
-#tree {
-  position: absolute;
-  width: 100%;
-  height: 80vh;
 }
 
 #landscape {
