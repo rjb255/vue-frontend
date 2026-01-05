@@ -28,9 +28,9 @@
 <script setup lang="ts">
 import { ref, type PropType } from "vue";
 
-const consecutiveNumbers: number[] = Array<number>(9)
+const consecutiveNumbers: number[] = Array<number>(3)
   .fill(0)
-  .map((_, index) => index);
+  .map((_, index) => index - 2);
 
 const { moonColours, sunColours, colours } = defineProps({
   moonColours: { type: Array as PropType<number[][]>, required: true },
