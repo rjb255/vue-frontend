@@ -62,7 +62,7 @@ const moonColoursBounds: { [key in keyof ColourBounds]: number[][] } = {
   6: chromatic([250, 54, 80], circleCount, false),
   10: chromatic([200, 100, 24], circleCount, false).reverse(),
   14: chromatic([67, 100, 18], circleCount),
-  18: chromatic([13, 100, 60], circleCount, false),
+  18: chromatic([13, 60, 50], circleCount, false).reverse(),
   23: chromatic([270, 54, 18], circleCount).reverse(),
 };
 const sunColoursBounds: { [key in keyof ColourBounds]: number[][] } = {
