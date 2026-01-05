@@ -231,6 +231,12 @@ nav {
   padding: 0 5%;
 }
 
+@media only screen and (max-width: 600px) {
+  .nav-links {
+    flex-direction: column;
+  }
+}
+
 #concentric-circles {
   position: fixed;
   z-index: 0;
