@@ -122,6 +122,7 @@ function calcValue(_bounds: ColourBounds) {
   let timeUpperIndex = timeBounds.findIndex((value) => value > now.getHours()) ?? 0;
   if (timeUpperIndex < 0) timeUpperIndex = 0;
   const timeUpperBound = timeBounds[timeUpperIndex];
+  // @ts-ignore at does exist on arr
   const timeLowerBound = timeBounds.at(timeUpperIndex - 1)!;
 
   let timeRange = timeUpperBound - timeLowerBound;
