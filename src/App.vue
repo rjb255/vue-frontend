@@ -1,7 +1,12 @@
 <template>
   <div class="wrapper">
     <div id="landscape">
-      <ConcentricCircles id="concentric-circles" :colours="circleColours" />
+      <ConcentricCircles
+        id="concentric-circles"
+        :colours="moonCircleColours"
+        :sunColours="sunCircleColours"
+        :moonColours="moonCircleColours"
+      />
       <CoverTree />
     </div>
     <div>
@@ -51,7 +56,8 @@ import FooterComponent from "./components/FooterComponent.vue";
 import CoverTree from "./components/CoverTree.vue";
 import {
   woodColour,
-  circleColours,
+  moonCircleColours,
+  sunCircleColours,
   groundColour,
   startColourChangingInterval,
 } from "./utilities/mainSvgColours";
