@@ -1,3 +1,4 @@
+import { SPEED_UP } from "@/config";
 import { ref } from "vue";
 
 function chromatic(starting: number[], count: number, light: boolean = true) {
@@ -112,13 +113,15 @@ function colourChanging() {
 }
 
 function calcValue(_bounds: ColourBounds) {
-  const now = new Date();
-  // mockNow = new Date(mockNow.getTime() + 1000 * 60);
-  // mockNow = testTimes[4];
-  // mockNow = new Date(2025, 10, 10, (new Date().getSeconds() / 60) * 24);
-  // mockNow = new Date(2025, 10, 10, 0);
-  // console.log(mockNow);
-  // const now = mockNow;
+  let now = new Date();
+  if (SPEED_UP) {
+    // mockNow = new Date(mockNow.getTime() + 1000 * 60);
+    // mockNow = testTimes[4];
+    // mockNow = new Date(2025, 10, 10, 0);
+    // console.log(mockNow);
+    const mockNow = new Date(2025, 10, 10, (new Date().getSeconds() / 60) * 24);
+    now = mockNow;
+  }
   let timeUpperIndex = timeBounds.findIndex((value) => value > now.getHours()) ?? 0;
   if (timeUpperIndex < 0) timeUpperIndex = 0;
   const timeUpperBound = timeBounds[timeUpperIndex];

@@ -10,7 +10,7 @@
       y1="0"
       y2="100"
       :stroke="
-        level < 9
+        level < 8
           ? `hsl(${woodColour[0]}, ${woodColour[1]}%, ${woodColour[2]}%)`
           : `hsl(${leafColour[0]}, ${leafColour[1]}%, ${leafColour[2]}%)`
       "

@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { ref, type PropType } from "vue";
+import { SPEED_UP } from "@/config";
 
 const consecutiveNumbers: number[] = Array<number>(3)
   .fill(0)
@@ -42,11 +43,11 @@ const fractionOfDay = ref(getFractionOfDay());
 
 function getFractionOfDay() {
   const date = new Date();
-  // return (date.getSeconds() / 60) * 40;
+  if (SPEED_UP) return (date.getSeconds() / 60) * 40;
   return ((date.getHours() + date.getMinutes() / 60) / 24) * 40;
 }
 
-setInterval(() => (fractionOfDay.value = getFractionOfDay()), 1000 * 60);
+setInterval(() => (fractionOfDay.value = getFractionOfDay()), SPEED_UP ? 100 : 1000 * 60);
 </script>
 
 <style scoped>
