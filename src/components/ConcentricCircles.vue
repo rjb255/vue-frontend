@@ -59,5 +59,6 @@ svg {
 
 svg circle {
   filter: drop-shadow(2px 2px 1px rgb(0 0 0 / 0.4)) drop-shadow(-2px -2px 1px rgb(0 0 0 / 0.4));
+  transition: fill 300ms ease;
 }
 </style>

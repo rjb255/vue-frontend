@@ -211,6 +211,9 @@ nav {
 #ground,
 nav {
   background-color: hsl(v-bind("`${groundColour[0]},${groundColour[1]}%,${groundColour[2]}%`"));
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
   color: hsl(v-bind("`${woodColour[0]},${woodColour[1]}%,${woodColour[2]}%`"));
   z-index: 3;
 }
@@ -244,6 +247,10 @@ nav {
 
 #roots {
   width: 100%;
+}
+
+#roots svg path {
+  transition: stroke 300ms ease;
 }
 
 header {
