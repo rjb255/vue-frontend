@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <svg id="tree" viewBox="0 0 100 100" overflow="visible" vector-effect="non-scaling-stroke">
-      <TreeNode transform="scale(0.3)" :level="0" :maxLevel="10"></TreeNode>
+      <TreeNode transform="scale(0.3)" :bias="bias" :level="0" :maxLevel="10"></TreeNode>
     </svg>
   </div>
 </template>
@@ -10,6 +10,16 @@
 // import { onMounted, ref, computed } from "vue";
 // import { woodColour, leafColour } from "@/utilities/mainSvgColours";
 import TreeNode from "@/components/TreeNode.vue";
+import { ref } from "vue";
+
+const bias = ref<number>(0);
+
+function getBias(timestamp: number) {
+  const omega = (2 * Math.PI) / 200;
+  bias.value = Math.sin((omega * timestamp) / 1000) / 1.5;
+  requestAnimationFrame(getBias);
+}
+requestAnimationFrame(getBias);
 </script>
 
 <style scoped>
