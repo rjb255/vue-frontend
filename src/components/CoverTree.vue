@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <svg id="tree" viewBox="0 0 100 100" overflow="visible" vector-effect="non-scaling-stroke">
-      <TreeNode transform="scale(0.3)" :bias="bias" :level="0" :maxLevel="10"></TreeNode>
+      <TreeNode transform="scale(0.3)" :bias="bias" :level="0" :maxLevel="8"></TreeNode>
     </svg>
   </div>
 </template>
@@ -27,16 +27,6 @@ requestAnimationFrame(getBias);
   width: min(80vh, 90vw);
   height: min(80vh, 90vw);
   z-index: 1;
-}
-
-svg line {
-  transform: scale(0, 0);
-  animation: scale-grow 0.5s linear forwards;
-}
-@keyframes scale-grow {
-  to {
-    transform: scale(1, 1);
-  }
 }
 
 .flex {

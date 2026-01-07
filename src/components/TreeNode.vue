@@ -3,14 +3,14 @@
     <line
       vector-effect="non-scaling-stroke"
       :stroke-width="2 * Math.exp(-(level - 1) / 5)"
-      :style="`animation-delay:${level / 2}s;`"
+      :style="`animation-delay:${0.5 + level / 4}s;`"
       transform-origin="50 100"
       x1="50"
       x2="50"
       y1="0"
       y2="100"
       :stroke="
-        level < 9
+        level < 7
           ? `hsl(${woodColour[0]}, ${woodColour[1]}%, ${woodColour[2]}%)`
           : `hsl(${leafColour[0]}, ${leafColour[1]}%, ${leafColour[2]}%)`
       "
@@ -117,7 +117,7 @@ if (Math.random() > 1 / (12 - level)) {
 
 line {
   transform: scale(0, 0);
-  animation: scale-grow 0.5s linear forwards;
+  animation: scale-grow 0.25s linear forwards;
 }
 @keyframes scale-grow {
   to {
