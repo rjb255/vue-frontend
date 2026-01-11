@@ -64,7 +64,7 @@ import {
   sunCircleColours,
   groundColour,
   startColourChangingInterval,
-} from "./utilities/mainSvgColours";
+} from "@/utilities/mainSvgColours";
 
 const route = useRoute();
 

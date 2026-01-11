@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import CircusFerrel2022 from "@/assets/pictures/album-covers/circus-ferrel-2022.png";
 import Maac2023 from "@/assets/pictures/album-covers/maac-2023.png";
+import { woodColour } from "@/utilities/mainSvgColours";
 type Album = { imgSrc: string; albumSrc: string; caption: string };
 
 const albums: Album[] = [
@@ -44,6 +45,7 @@ const albums: Album[] = [
 }
 .link {
   height: 100%;
+  color: hsl(v-bind("`${woodColour[0]},${woodColour[1]}%,${woodColour[2]}%`"));
 }
 
 .link,
