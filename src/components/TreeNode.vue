@@ -70,8 +70,8 @@ const viscousDamping = 0.8 / (level + 1);
 const m = 5 * 0.8 ** level;
 
 function rotateTreeNode() {
-  targets[0] = (Math.random() - 0.5 + bias) * 15;
-  targets[1] = (Math.random() - 0.5 + bias) * 15;
+  targets[0] = (Math.random() - 0.5 + bias) * 5;
+  targets[1] = (Math.random() - 0.5 + bias) * 5;
   x[0] = trueX[0] - targets[0];
   x[1] = trueX[1] - targets[1];
 }
