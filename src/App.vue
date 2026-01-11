@@ -42,7 +42,11 @@
       </header>
     </div>
     <div class="body">
-      <RouterView />
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" :key="route.path" />
+        </transition>
+      </router-view>
     </div>
     <FooterComponent />
   </div>
@@ -50,7 +54,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, useRoute } from "vue-router";
 import ConcentricCircles from "./components/ConcentricCircles.vue";
 import FooterComponent from "./components/FooterComponent.vue";
 import CoverTree from "./components/CoverTree.vue";
@@ -61,6 +65,8 @@ import {
   groundColour,
   startColourChangingInterval,
 } from "./utilities/mainSvgColours";
+
+const route = useRoute();
 
 let colourChangingInterval: ReturnType<typeof setInterval>;
 onMounted(() => {
@@ -158,6 +164,11 @@ nav .button:hover {
   transition-delay: 0.25s;
 }
 
+nav .button.router-link-active {
+  background-color: v-bind(woodColourCss);
+  color: v-bind(groundColourCss);
+}
+
 nav .button:hover:after {
   background: v-bind(woodColourCss);
   transition-delay: 0s;
@@ -176,7 +187,8 @@ nav .button:after {
   height: 0;
 }
 
-nav .button:hover:after {
+nav .button:hover:after,
+.router-link-active:after {
   height: 100%;
 }
 
