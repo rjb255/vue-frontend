@@ -85,7 +85,7 @@ const links = [
 
 const roots = links.map((_, index) => {
   const endX = (100 / links.length) * (index + 0.5);
-  return "M 50 0 C 50 60 " + endX + " -15 " + endX + " 30";
+  return "M 50 0 C 50 100 " + endX + " -60 " + endX + " 80";
 });
 
 const woodColourCss = computed(
@@ -208,7 +208,7 @@ nav {
 
 #ground,
 #roots {
-  height: 20vh;
+  height: 10vh;
 }
 .body {
   position: absolute;
@@ -237,18 +237,22 @@ nav {
   width: 100%;
 }
 .nav-links {
-  position: absolute;
   display: flex;
   gap: 10%;
   width: 100%;
   justify-content: space-around;
   top: 90vh;
   padding: 0 5%;
+  padding-bottom: 3rem;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   .nav-links {
     flex-direction: column;
+  }
+  .nav-links > .button {
+    height: 3rem;
+    text-align: center;
   }
 }
 

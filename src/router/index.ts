@@ -1,8 +1,6 @@
 // import { createRouter, createWebHistory } from "vue-router";
 import "vue-router";
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/views/HomeView.vue";
-import AlbumsView from "@/views/AlbumsView.vue";
 
 declare module "vue-router" {
   interface RouteMeta {
@@ -16,22 +14,19 @@ const router = createRouter({
     {
       path: "/home",
       name: "home",
-      component: HomeView,
+      component: () => import("@/views/HomeView.vue"),
     },
     {
       path: "/albums",
       name: "albums",
-      component: AlbumsView,
       meta: { title: "Albums | Ross Brown" },
+      component: () => import("@/views/AlbumsView.vue"),
     },
     {
       path: "/projects",
       name: "projects",
       meta: { title: "Projects | Ross Brown" },
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("@/views/PreMoveChess.vue"),
+      component: () => import("@/views/MyProjects.vue"),
     },
   ],
 });
