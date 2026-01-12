@@ -61,7 +61,7 @@ const x = [0, 0];
 const v = [0, 0];
 const a = [0, 0];
 
-let startingTime: number;
+let startingTime: number | undefined;
 let t: number;
 let dt = 0;
 
@@ -103,10 +103,18 @@ function animate(timestamp: number) {
   if (node2.value?.$el.style) {
     node2.value.$el.style.transform = `${matrix2} rotate(${trueX[1]}deg)`;
   }
-  requestAnimationFrame(animate);
+  if (!document.hidden) requestAnimationFrame(animate);
+  else startingTime = undefined;
 }
+
 if (Math.random() > 1 / (12 - level)) {
   requestAnimationFrame(animate);
+  document.addEventListener("visibilitychange", () => {
+    console.log("Hey");
+    if (!document.hidden) {
+      requestAnimationFrame(animate);
+    }
+  });
 }
 </script>
 

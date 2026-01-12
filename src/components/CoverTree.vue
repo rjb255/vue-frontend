@@ -17,9 +17,14 @@ const bias = ref<number>(0);
 function getBias(timestamp: number) {
   const omega = (2 * Math.PI) / 200;
   bias.value = Math.sin((omega * timestamp) / 1000) / 1.5;
-  requestAnimationFrame(getBias);
+  if (!document.hidden) requestAnimationFrame(getBias);
 }
-requestAnimationFrame(getBias);
+document.addEventListener("visibilitychange", () => {
+  console.log("Hey");
+  if (!document.hidden) {
+    requestAnimationFrame(getBias);
+  }
+});
 </script>
 
 <style scoped>
