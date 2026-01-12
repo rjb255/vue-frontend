@@ -3,7 +3,7 @@
     <div id="landscape">
       <ConcentricCircles
         id="concentric-circles"
-        :colours="moonCircleColours"
+        :colours="circleColours"
         :sunColours="sunCircleColours"
         :moonColours="moonCircleColours"
       />
@@ -62,6 +62,7 @@ import {
   woodColour,
   moonCircleColours,
   sunCircleColours,
+  circleColours,
   groundColour,
   startColourChangingInterval,
 } from "@/utilities/mainSvgColours";

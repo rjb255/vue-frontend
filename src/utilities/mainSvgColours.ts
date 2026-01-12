@@ -38,14 +38,13 @@ const leafColourBounds: ColourBounds = {
 };
 
 const circleColoursBounds: { [key in keyof ColourBounds]: number[][] } = {
-  1: chromatic([250, 35, 0], circleCount).reverse(),
-  6: chromatic([270, 54, 18], circleCount),
-  10: chromatic([13, 100, 60], circleCount),
-  14: chromatic([176, 80, 18], circleCount).reverse(),
+  1: chromatic([250, 35, 0], circleCount),
+  6: chromatic([250, 54, 80], circleCount, false),
+  10: chromatic([200, 100, 24], circleCount, false).reverse(),
+  14: chromatic([67, 100, 18], circleCount),
   18: chromatic([13, 100, 60], circleCount),
-  23: chromatic([270, 54, 18], circleCount),
+  23: chromatic([270, 54, 18], circleCount).reverse(),
 };
-
 const moonColoursBounds: { [key in keyof ColourBounds]: number[][] } = {
   1: chromatic([250, 35, 0], circleCount),
   6: chromatic([250, 54, 80], circleCount, false),
@@ -59,7 +58,7 @@ const sunColoursBounds: { [key in keyof ColourBounds]: number[][] } = {
   6: chromatic([270, 54, 18], circleCount, false),
   10: chromatic([200, 100, 60], circleCount).reverse(),
   14: chromatic([62, 80, 50], circleCount).reverse(),
-  18: chromatic([13, 100, 60], circleCount).reverse(),
+  18: chromatic([13, 100, 60], circleCount),
   23: chromatic([270, 54, 18], circleCount, false).reverse(),
 };
 
