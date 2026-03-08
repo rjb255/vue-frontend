@@ -81,7 +81,7 @@ onUnmounted(() => {
 const links = [
   { text: "Home", name: "home" },
   { text: "Albums", name: "albums" },
-  // { text: "Projects", name: "projects" },
+  { text: "Projects", name: "projects" },
 ];
 
 const roots = links.map((_, index) => {

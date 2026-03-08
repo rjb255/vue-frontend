@@ -28,6 +28,12 @@ const router = createRouter({
       meta: { title: "Projects | Ross Brown" },
       component: () => import("@/views/MyProjects.vue"),
     },
+    {
+      path: "/projects/centrol",
+      name: "project-centrol",
+      meta: { title: "Project Centrol | Ross Brown" },
+      component: () => import("@/views/projects/ProjectCentrol.vue"),
+    },
   ],
 });
 router.beforeEach((to, _, next) => {
