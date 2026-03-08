@@ -10,9 +10,8 @@
   </RouterLink>
 </template>
 
-<script setup>
-import { useRouter } from "vue-router";
-import { computed, defineProps } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { woodColour } from "@/utilities/mainSvgColours";
 
 const props = defineProps({
@@ -22,15 +21,9 @@ const props = defineProps({
   },
 });
 
-const router = useRouter();
-
 const woodColourCss = computed(
   () => `hsl(${woodColour.value[0]},${woodColour.value[1]}%,${woodColour.value[2]}%)`,
 );
-
-function goToProject() {
-  router.push(`/projects/${props.project.id}`);
-}
 </script>
 
 <style scoped>
