@@ -20,7 +20,6 @@ function getBias(timestamp: number) {
   if (!document.hidden) requestAnimationFrame(getBias);
 }
 document.addEventListener("visibilitychange", () => {
-  console.log("Hey");
   if (!document.hidden) {
     requestAnimationFrame(getBias);
   }

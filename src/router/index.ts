@@ -42,7 +42,7 @@ const router = createRouter({
             },
             {
               path: "inital-work",
-              name: "project-centrol-inital-work",
+              name: "project-centrol-initial-work",
               component: () => import("@/views/projects/project-centrol/InitialWork.vue"),
             },
             {

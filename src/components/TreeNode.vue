@@ -110,7 +110,6 @@ function animate(timestamp: number) {
 if (Math.random() > 1 / (12 - level)) {
   requestAnimationFrame(animate);
   document.addEventListener("visibilitychange", () => {
-    console.log("Hey");
     if (!document.hidden) {
       requestAnimationFrame(animate);
     }
