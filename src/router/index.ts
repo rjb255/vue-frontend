@@ -24,15 +24,40 @@ const router = createRouter({
     },
     {
       path: "/projects",
-      name: "projects",
-      meta: { title: "Projects | Ross Brown" },
-      component: () => import("@/views/MyProjects.vue"),
-    },
-    {
-      path: "/projects/centrol",
-      name: "project-centrol",
-      meta: { title: "Project Centrol | Ross Brown" },
-      component: () => import("@/views/projects/ProjectCentrol.vue"),
+      children: [
+        {
+          path: "",
+          name: "projects",
+          meta: { title: "Projects | Ross Brown" },
+          component: () => import("@/views/MyProjects.vue"),
+        },
+        {
+          path: "/projects/centrol",
+          meta: { title: "Project Centrol | Ross Brown" },
+          children: [
+            {
+              path: "",
+              name: "project-centrol",
+              component: () => import("@/views/projects/ProjectCentrol.vue"),
+            },
+            {
+              path: "inital-work",
+              name: "project-centrol-inital-work",
+              component: () => import("@/views/projects/project-centrol/InitialWork.vue"),
+            },
+            {
+              path: "detailed-design",
+              name: "project-centrol-detailed-design",
+              component: () => import("@/views/projects/project-centrol/DetailedDesign.vue"),
+            },
+            {
+              path: "prototyping",
+              name: "project-centrol-prototyping",
+              component: () => import("@/views/projects/project-centrol/PrototypingWork.vue"),
+            },
+          ],
+        },
+      ],
     },
   ],
 });
